@@ -70,15 +70,16 @@ class Profile {
    * 
    **/
 
-  static async getProfileData(profileID) {
+  static async getProfileData(profile_id) {
     const result = await db.query(
           `SELECT profile_name, effects
            FROM profiles
            WHERE id = $1`,
-        [profileID],
+        [profile_id],
     );
 
     const profile = result.rows[0];
+    console.log(profile);
     if (!profile) throw new NotFoundError(`No profile with ID ${profileID}`);
     return profile;
   }

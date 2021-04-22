@@ -46,17 +46,18 @@ router.get("/:username", async function (req, res, next) {
 });
 
 
-/** GET /[profileName] => { profile }
+/** GET /[profile_id] => { profile }
  *
  * Returns { name, {effects} } from given profile_id.
  *
  **/
 
 // router.get("/:profileName", ensureLoggedIn, async function (req, res, next) {
-router.get("/:username/:profileID", async function (req, res, next) {
+router.get("/:username/:profile_id", async function (req, res, next) {
   try {
-    console.log(req.params.username, req.params.profileID);
-    const profile = await Profile.getProfileData(req.params.profileID);
+    // console.log("from profiles routes:" + req.params.username, req.params.profile_id);
+    const profile = await Profile.getProfileData(req.params.profile_id);
+    console.log("from profiles route: " + profile);
     return res.json({ profile });
   } catch (err) {
     return next(err);
