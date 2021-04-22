@@ -19,7 +19,7 @@ class Profile {
    * 
    */
 
-  static async save({ username, profileName, effects }) {
+  static async save({ username, profile_name, effects }) {
     // const duplicateCheck = await db.query(
     //       `SELECT profile_name
     //        FROM profiles
@@ -36,7 +36,7 @@ class Profile {
            (username, profile_name, effects)
            VALUES ($1, $2, $3)
            RETURNING username, profile_name, effects`,
-        [username, profileName, effects],
+        [username, profile_name, effects],
     );
 
     const profile = result.rows[0];
@@ -52,7 +52,7 @@ class Profile {
 
   static async findUsersProfiles(username) {
     const result = await db.query(
-          `SELECT name
+          `SELECT profile_name, id
            FROM profiles
            WHERE username = $1`,
         [username]
@@ -80,7 +80,6 @@ class Profile {
 
     const profile = result.rows[0];
     if (!profile) throw new NotFoundError(`No profile with ID ${profileID}`);
-    
     return profile;
   }
 

@@ -53,9 +53,10 @@ router.get("/:username", async function (req, res, next) {
  **/
 
 // router.get("/:profileName", ensureLoggedIn, async function (req, res, next) {
-router.get("/:profileName", async function (req, res, next) {
+router.get("/:username/:profileID", async function (req, res, next) {
   try {
-    const profile = await Profile.getProfileData(req.params.profileName);
+    console.log(req.params.username, req.params.profileID);
+    const profile = await Profile.getProfileData(req.params.profileID);
     return res.json({ profile });
   } catch (err) {
     return next(err);
