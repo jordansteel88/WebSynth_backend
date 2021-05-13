@@ -12,7 +12,7 @@ console.log('***********getDatabaseUri***********');
 
 const db = new Client({
   connectionString: getDatabaseUri(), 
-  ssl: { rejectUnauthorized: false }
+  // ssl: { rejectUnauthorized: false }
 });
 
 console.log('********before db.connect()');
